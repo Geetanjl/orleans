@@ -36,8 +36,14 @@ steps:
     command: 'build'
     projects: 'Orleans.sln'
     configuration: 'Release'
-- task: DotNetCoreCLI@2
-  displayName: '.net publish'
+- task: PublishBuildArtifacts@1
   inputs:
-    command: 'publish'
-    publishWebProjects: true
+    PathtoPublish: '$(Build.SourcesDirectory)/bin/Debug/net7.0'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+- task: DownloadBuildArtifacts@1
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'drop'
+    downloadPath: '$(System.ArtifactsDirectory)'
