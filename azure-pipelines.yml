@@ -1,0 +1,46 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: windows-latest
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: 
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: 'Orleans.sln'
+    feedsToUse: 'select'
+    configuration: 'Release'
+- task: DotNetCoreCLI@2
+  displayName: '.net restore'
+  inputs:
+    command: 'restore'
+    projects: 'Orleans.sln'
+    feedsToUse: 'select'
+    configuration: 'Release'
+- task: DotNetCoreCLI@2
+  displayName: '.net build'
+  inputs:
+    command: 'build'
+    projects: 'Orleans.sln'
+    configuration: 'Release'
+- task: DotNetCoreCLI@2
+  displayName: '.net test'
+  inputs:
+    command: 'test'
+    projects: 'Orleans.sln'
+    configuration: 'Release'
+- task: DotNetCoreCLI@2
+  displayName: '.net publish'
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
