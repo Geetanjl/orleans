@@ -22,7 +22,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version:
+    version: 7.x
 - task: DotNetCoreCLI@2
   displayName: '.net restore'
   inputs:
