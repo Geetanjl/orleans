@@ -37,12 +37,6 @@ steps:
     projects: 'Orleans.sln'
     configuration: 'Release'
 - task: DotNetCoreCLI@2
-  displayName: '.net test'
-  inputs:
-    command: 'test'
-    projects: 'Orleans.sln'
-    configuration: 'Release'
-- task: DotNetCoreCLI@2
   displayName: '.net publish'
   inputs:
     command: 'publish'
