@@ -10,6 +10,10 @@ pool:
   vmImage: windows-latest
 
 steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: 7.x
 - task: NuGetToolInstaller@1
   inputs:
     versionSpec: 
@@ -19,10 +23,6 @@ steps:
     restoreSolution: 'Orleans.sln'
     feedsToUse: 'select'
     configuration: 'Release'
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: 7.x
 - task: DotNetCoreCLI@2
   displayName: '.net restore'
   inputs:
