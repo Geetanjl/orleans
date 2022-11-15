@@ -36,14 +36,3 @@ steps:
     command: 'build'
     projects: 'Orleans.sln'
     configuration: 'Release'
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)/bin/Debug/net7.0'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-- task: DownloadBuildArtifacts@1
-  inputs:
-    buildType: 'current'
-    downloadType: 'single'
-    artifactName: 'drop'
-    downloadPath: '$(System.ArtifactsDirectory)'
