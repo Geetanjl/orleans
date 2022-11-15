@@ -10,6 +10,17 @@ pool:
   vmImage: windows-latest
 
 steps:
+- task: Npm@1
+  displayName: 'install npm'
+  inputs:
+    command: 'install'
+    workingDir: 'orleans'
+- task: Npm@1
+  displayName: 'run and build npm'
+  inputs:
+    command: 'custom'
+    workingDir: 'orleans'
+    customCommand: 'run build'
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
