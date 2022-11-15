@@ -39,7 +39,7 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'buils artifact'
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/src/Orleans.Client/bin/Debug/net7.0'
+    PathtoPublish: '$(Build.SourcesDirectory)/src/Orleans.Client/bin/Debug/net7.0'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 - task: DownloadBuildArtifacts@1
